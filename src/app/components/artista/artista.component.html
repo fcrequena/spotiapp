@@ -1,0 +1,55 @@
+<app-loading *ngIf="loading" app-loading></app-loading>
+
+  <div *ngIf="!loading" class="card text-bg-dark mb-3 text-center animated FadeIn m-5" >
+    <div class="card-header">{{artista.name}}</div>
+    <div class="card-body">
+      <h5 class="card-title "><img [src]="artista.images | noimages" alt="" class="img-circle"></h5>
+      <p class="card-text">
+        <a [href]="artista.external_urls.spotify" target="blank">
+        Ir a la pagina
+        </a>
+      </p>
+    </div>
+    <div class="card-footer text-muted">
+      <button type="button" class="btn btn-primary">Regresar</button>
+    </div>
+
+    <table class="table table-dark table-sm">
+      <thead>
+        <tr>
+          <th>
+            Foto
+          </th>
+          <th>
+            Album
+          </th>
+          <th>
+            Cancion
+          </th>
+          <th>
+            Vista Previa
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cancion of topTrack">
+          <th>
+            <img [src]="cancion.album.images | noimages" alt="" class="img-thumb">
+          </th>
+          <th>
+            {{cancion.album.name}}
+          </th>
+          <th>
+            {{cancion.name}}
+          </th>
+          <th>
+            <!-- UTILIZAR EL WIDGET DE SPOTIFY-->
+            <audio controls="controls">
+              <source [src]="cancion.preview_url">
+            </audio>
+
+          </th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
